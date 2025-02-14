@@ -3,7 +3,7 @@ class Database {
     private $host = "localhost";
     private $database = "patroclo_store";
     private $user = "root";
-    private $password = "";
+    private $password = "123456";
 
     public $conn;
 
