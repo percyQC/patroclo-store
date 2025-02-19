@@ -1,15 +1,28 @@
 <?php
     require_once __DIR__ . '/../app/config/Database.php';
+    require_once __DIR__ . '/../app/models/Categoria.php';
+
+    echo "<p>----------- Hola desde index.php ---------------- </p>";
 
     $database = new Database();
     $conn = $database->getConnection();
 
     if($conn) {
-        echo "La conexion ha sido exitosa mi chamo :D";
+        echo "<p>La conexion ha sido exitosa mi chamo :D</p>";
     } else {
-        echo "La conexion ha fallado mamoso :(";
+        echo "<p>La conexion ha fallado mamoso :(</p>";
     }
 
+    $categoriaModel = new Categoria($conn);
 
-    echo " ----------- Hola desde index.php ---------------- ";
+    $categorias = $categoriaModel->listarCategorias();
+
+    echo "<div>";
+    print_r($categorias);
+    echo "</div>";
+
+
+
+
+    
 ?>
