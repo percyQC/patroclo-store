@@ -8,7 +8,7 @@ class Categoria {
     }
 
     public function listarCategorias(){
-        $query = "select * from " . $this->tableName . " where estado_auditoria = '1' ";
+        $query = "SELECT * FROM " . $this->tableName . " where estado_auditoria = '1' ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -20,8 +20,13 @@ class Categoria {
         
     }
 
-    public function insertarCategoria(){
-        
+    public function insertarCategoria($categoria){
+        $query = "INSERT INTO " . $this->tableName . " (nombre,imagen_url) VALUES ( :nombre , :imagenUrl )";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':nombre',$categoria['nombre']);
+        $stmt->bindParam(':imagenUrl',$categoria['imagenUrl']);
+        return $stmt->execute();
+
     }
 
     public function actualizarCategoria(){

@@ -14,6 +14,15 @@ class CategoriaController {
 
     public function index(){
         $categorias = $this->categoriaModel->listarCategorias();
-        require_once __DIR__ . '/../views/categorias/index.php';
+        require __DIR__ . '/../views/categorias/index.php';
     }
+
+    public function viewInsertar(){
+        require __DIR__ . '/../views/categorias/insertar.php';
+    }
+
+    public function insertar($request){
+        $this->categoriaModel->insertarCategoria($request);
+        header('Location: /public?controller=Categoria');
+    }    
 }
