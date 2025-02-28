@@ -24,5 +24,9 @@ class CategoriaController {
     public function insertar($request){
         $this->categoriaModel->insertarCategoria($request);
         header('Location: /public?controller=Categoria');
-    }    
+    }
+    
+    public function viewActualizar(){
+        require __DIR__ . '/../views/categorias/actualizar.php';
+    }
 }

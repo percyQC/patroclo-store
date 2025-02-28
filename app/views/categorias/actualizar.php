@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patroclo Store | SISE</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
@@ -51,49 +52,25 @@
     </header>
 
     <main style="padding: 20px;">
-        <div style="display: flex; gap: 20px;">
-        <h1>Lista de categorias</h1>
-        <p><a class="btn btn-dark" href="/?controller=Categoria&action=viewInsertar"> + Categoria</a></p>        
-        </div>
-        <table class="table table-dark table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Imagen</th>
-                    <th scope="col">Fecha Creaciòn</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if(!empty($categorias)):?>
-                    <?php foreach($categorias as $cat): ?>
-                    <tr>
-                        <th scope="row"><?php echo $cat['id_categoria'];?></th>
-                        <td><?php echo$cat['nombre'] ?></td>
-                        <td>
-                            <img src="<?php echo$cat['imagen_url'] ?>" width="200px" height="150px" alt="<?php echo$cat['nombre'] ?>">                        
-                        </td>
-                        <td><?php echo$cat['fecha_creacion_auditoria'] ?></td>
-                        <td>
-                        <a href="/?controller=Categoria&action=viewActualizar" type="button" class="btn btn-outline-light">Editar</a>
-                        <a href="" type="button" class="btn btn-outline-danger">Eliminar</a>                        
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                    <?php else: ?>
-                    <tr>
-                    
-                    <td colspan="4">No existen registros</td>
-                    
-                    </tr>
-                    <?php endif; ?>              
-                
-            </tbody>
-        </table>
+        <h1>Actualizar Categoria</h1>
+
+        <form action="index.php?controller=Categoria&action=insertar" method="post">
+            <div class="mb-3">
+                <label for="nombreCategoria" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreCategoria" minlength="3" required name="nombre">
+            </div>
+            <div class="mb-3">
+                <label for="imagenUrlCategoria" class="form-label">URL Imagen</label>
+                <input type="text" class="form-control" id="imagenUrlCategoria" minlength="5" required name="imagenUrl">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+
     </main>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </html>
