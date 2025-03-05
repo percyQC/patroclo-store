@@ -54,17 +54,20 @@
     <main style="padding: 20px;">
         <h1>Actualizar Categoria</h1>
 
-        <form action="index.php?controller=Categoria&action=insertar" method="post">
+        <form action="index.php?controller=Categoria&action=actualizar" method="post">
+            <input type="text" class="d-none form-control" id="idCategoria"  name="idCategoria" value="<?php echo $categoria['id_categoria']; ?>">
             <div class="mb-3">
                 <label for="nombreCategoria" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombreCategoria" minlength="3" required name="nombre">
+                <input type="text" class="form-control" id="nombreCategoria" minlength="3" required name="nombre" value="<?php echo $categoria['nombre']; ?>">
             </div>
             <div class="mb-3">
-                <label for="imagenUrlCategoria" class="form-label">URL Imagen</label>
-                <input type="text" class="form-control" id="imagenUrlCategoria" minlength="5" required name="imagenUrl">
+                <label for="imagenUrlCategoria" class="form-label">URL Imagen</label>                
+                <input type="text" class="form-control" id="imagenUrlCategoria" minlength="5" required name="imagenUrl" value="<?php echo $categoria['imagen_url']; ?>">
             </div>
 
-            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="submit" class="btn btn-outline-warning">Actualizar</button>
+            <a href="/public?controller=Categoria" type="button" class="btn btn-outline-dark"> ← Volver</a>
+            
         </form>
 
     </main>

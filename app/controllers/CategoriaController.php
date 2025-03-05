@@ -23,10 +23,23 @@ class CategoriaController {
 
     public function insertar($request){
         $this->categoriaModel->insertarCategoria($request);
-        header('Location: /public?controller=Categoria');
+        header('Location:/public?controller=Categoria');
     }
     
     public function viewActualizar(){
+        $idCategoria=isset($_GET['idCategoria']) ? $_GET['idCategoria'] : '0';
+        $categoria = $this->categoriaModel->ObtenerCategoria($idCategoria);
         require __DIR__ . '/../views/categorias/actualizar.php';
+    }
+
+    public function actualizar($request){
+        $this->categoriaModel->actualizarCategoria($request);
+        header('Location:/public?controller=Categoria');
+    }
+
+    public function darBaja(){
+        $idCategoria=isset($_GET['idCategoria']) ? $_GET['idCategoria'] : '0';
+        $this->categoriaModel->darBajaCategoria($idCategoria);
+        header('Location:/public?controller=Categoria');
     }
 }

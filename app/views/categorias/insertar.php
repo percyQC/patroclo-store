@@ -64,7 +64,8 @@
                 <input type="text" class="form-control" id="imagenUrlCategoria" minlength="5" required name="imagenUrl">
             </div>
 
-            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="submit" class="btn btn-outline-warning">Agregar</button>
+            <a href="/public?controller=Categoria" type="button" class="btn btn-outline-dark"> ← Volver</a>
         </form>
 
     </main>

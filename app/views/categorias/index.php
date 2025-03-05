@@ -76,16 +76,15 @@
                         </td>
                         <td><?php echo$cat['fecha_creacion_auditoria'] ?></td>
                         <td>
-                        <a href="/?controller=Categoria&action=viewActualizar" type="button" class="btn btn-outline-light">Editar</a>
-                        <a href="" type="button" class="btn btn-outline-danger">Eliminar</a>                        
+                        <a href="/?controller=Categoria&action=viewActualizar&idCategoria=<?php echo $cat ['id_categoria'] ?>" type="button" class="btn btn-outline-light">Editar</a>
+                        <a href="/?controller=Categoria&action=darBaja&idCategoria=<?php echo $cat ['id_categoria'] ?>" type="button" class="btn btn-outline-danger">Eliminar</a>                        
                         </td>
                     </tr>
+                    
                     <?php endforeach; ?>
                     <?php else: ?>
-                    <tr>
-                    
-                    <td colspan="4">No existen registros</td>
-                    
+                    <tr>                    
+                    <td colspan="4">No existen registros</td>                    
                     </tr>
                     <?php endif; ?>              
                 

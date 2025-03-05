@@ -8,7 +8,7 @@ class Categoria {
     }
 
     public function listarCategorias(){
-        $query = "SELECT * FROM " . $this->tableName . " where estado_auditoria = '1' ";
+        $query = "SELECT * FROM " . $this->tableName . " where estado_auditoria = '1' ORDER BY fecha_creacion_auditoria desc";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -16,8 +16,14 @@ class Categoria {
 
     }
 
-    public function ObtenerCategoria(){
-        
+    public function ObtenerCategoria($idCategoria){
+        $query = "SELECT * FROM " . $this->tableName . " where estado_auditoria = '1' AND id_categoria = :id_categoria";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_categoria',$idCategoria);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0];
+
     }
 
     public function insertarCategoria($categoria){
@@ -29,11 +35,19 @@ class Categoria {
 
     }
 
-    public function actualizarCategoria(){
-        
+    public function actualizarCategoria($categoria){
+        $query = "UPDATE " . $this->tableName . " SET nombre = :nombre , imagen_url = :imagenUrl WHERE id_categoria = :idCategoria";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':nombre',$categoria['nombre']);
+        $stmt->bindParam(':imagenUrl',$categoria['imagenUrl']);
+        $stmt->bindParam(':idCategoria',$categoria['idCategoria']);
+        return $stmt->execute();
     }
 
-    public function darBajaCategoria(){
-        
+    public function darBajaCategoria($categoria){
+        $query = "UPDATE " . $this->tableName . " SET estado_auditoria = '0' WHERE id_categoria = :idCategoria";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':idCategoria',$categoria);
+        return $stmt->execute();
     }
 }
