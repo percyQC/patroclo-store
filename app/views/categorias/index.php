@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patroclo Store | SISE</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -77,22 +78,49 @@
                         <td><?php echo$cat['fecha_creacion_auditoria'] ?></td>
                         <td>
                         <a href="/?controller=Categoria&action=viewActualizar&idCategoria=<?php echo $cat ['id_categoria'] ?>" type="button" class="btn btn-outline-light">Editar</a>
-                        <a href="/?controller=Categoria&action=darBaja&idCategoria=<?php echo $cat ['id_categoria'] ?>" type="button" class="btn btn-outline-danger">Eliminar</a>                        
+                        <a onclick="onClickDarBaja(<?php echo $cat['id_categoria']; ?>)" type="button" class="btn btn-danger">Eliminar</a>                        
                         </td>
                     </tr>
                     
                     <?php endforeach; ?>
                     <?php else: ?>
                     <tr>                    
-                    <td colspan="4">No existen registros</td>                    
+                    <td colspan="5">No existen registros</td>                    
                     </tr>
                     <?php endif; ?>              
                 
             </tbody>
         </table>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+    const onClickDarBaja = (idCategoria) => {
+        console.log('idCategoria',idCategoria);
+        Swal.fire({
+            title: "¿Quieres eliminar el registro?",
+            text: "No podras revertir los cambios",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, ¡eliminar!",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                title: "¡Eliminado!",
+                text: "El registro ha sido eliminado con éxito",
+                icon: "success"
+                }).then(()=>{
+                    console.log('elminando...');
+                    window.location = `/?controller=Categoria&action=darBaja&idCategoria=${idCategoria}`
+                });
+                
+            }
+        });
+    }
+</script>
 
 </html>
